@@ -5,7 +5,7 @@
 
 
 
-var andrei;
+var idCellEdit;
 var steps=0;
 var board =[[0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0],
@@ -191,8 +191,10 @@ fillHtml();
 //*****************************************************************************************************************
 
 
-const openPopup = () => {
+const openPopup = ({top, left}) => {
     const popup = document.getElementById('popup2');
+    popup.style.left = left;
+    popup.style.top = top;
     popup.style.display = "block";
 }
 
@@ -202,19 +204,17 @@ const closePopup = () => {
 }
 
 const selectNumberForCell = function (e) {
-    andrei = e.target.id;
+    idCellEdit = e.target.id;
     e.stopPropagation();
-    // e.stopP
-    var x = e.clientX,
-        y = e.clientY;
+
+    const left = (e.clientX - 70) + 'px',
+        top = (e.clientY - 70) + 'px';
     
-    // tool.style.top = (y-70)+'px';
-    // tool.style.left = (x-70)+'px';
-    openPopup();
+    openPopup({left, top});
 }
 
 const insertNum = (num) => {
-    document.getElementById(andrei).innerHTML = num;
+    document.getElementById(idCellEdit).innerHTML = num;
     closePopup();
 }
 
