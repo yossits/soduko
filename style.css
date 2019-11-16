@@ -140,9 +140,9 @@ footer {
 
 
 /* cells desige */
-.button {
+.linkButton {
   font-size: 1em;
-  padding: 10px;
+  padding: 20px;
   color: #fff;
   border: 2px solid rgba(255, 255, 255, 0.308);
   border-radius: 40px/40px;
@@ -153,19 +153,9 @@ footer {
   opacity: 0.7;
 }
 
-.button:hover {
+.linkButton:hover {
   background: #06D85F;
   opacity: 1;
-}
-
-.linkButton {
-  font-size: 1em;
-  padding: 10px;
-  color: #fff;
-  border-radius: 40px/40px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
 }
 
 /****************************************************************************/

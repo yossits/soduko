@@ -3,7 +3,6 @@
 //    ***********************************************
 
 
-// www
 
 
 var andrei;
@@ -179,14 +178,14 @@ const fillHtml=() => {
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             if(board[i][j]!=0){
-                document.getElementById('div'+i+''+j).innerHTML = board[i][j];
+                document.getElementById(`a${i}${j}`).innerHTML = board[i][j];
             }
         }
     }
 }
 
 fillBoard();
-reveal(80);
+reveal(60);
 fillHtml();
 
 //*****************************************************************************************************************
