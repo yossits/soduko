@@ -9,112 +9,176 @@
 </head>
 
 <body>
-    
-    <div>
-        <table id="full_table">
-            <tr id="0">
-                <td id="00"></td>
-                <td id="01"></td>
-                <td id="02"></td>
-                <td id="03"></td>
-                <td id="04"></td>
-                <td id="05"></td>
-                <td id="06"></td>
-                <td id="07"></td>
-                <td id="08"></td></tr>
+    <div class="fullPage">
+        <!-- ******************************************************************* -->
+            <!-- <header style=>
+                <div style=>
+                    <a class="button">SIGN IN</a>
+                </div>
 
-            <tr id="1">
-                <td id="10">10</td>
-                <td id="11">11</td>
-                <td id="12">12</td>
-                <td id="13">13</td>
-                <td id="14">14</td>
-                <td id="15">15</td>
-                <td id="16"></td>
-                <td id="17"></td>
-                <td id="18"></td></tr>
+                <div style="bottom: 18px; position:relative;">
+                    <a class="button">choose difficulty</a>
+                </div>
 
-            <tr id="2">
-                <td id="20"></td>
-                <td id="21"></td>
-                <td id="22"></td>
-                <td id="23"></td>
-                <td id="24"></td>
-                <td id="25"></td>
-                <td id="26"></td>
-                <td id="27"></td>
-                <td id="28"></td></tr>
+                <div style="bottom: 63px; position:relative;">
+                    <p class="welcome">welcome</p>
+                </div>
+            </header> -->
+        <!-- ******************************************************************* -->
+            <nav>
+                nav
+            </nav>
+        <!-- ******************************************************************* -->
+            <section>
+                <div id="popup2" class="number-selector">
+                <!-- choosing number when click on cell in popup window  -->
+                    <div class="popup">
+                        <a class="close">&times;</a>
+                        <div class="content">
+                            <button class="choosingButton" onclick="insertNum(1)">1</button>
+                            <button class="choosingButton" onclick="insertNum(2)">2</button>
+                            <button class="choosingButton" onclick="insertNum(3)">3</button>
+                            <br>
+                            <button class="choosingButton" onclick="insertNum(4)">4</button>
+                            <button class="choosingButton" onclick="insertNum(5)">5</button>
+                            <button class="choosingButton" onclick="insertNum(6)">6</button>
+                            <br>
+                            <button class="choosingButton" onclick="insertNum(7)">7</button>
+                            <button class="choosingButton" onclick="insertNum(8)">8</button>
+                            <button class="choosingButton" onclick="insertNum(9)">9</button>
+                        </div>
+                    </div>
+                </div>
 
-            <tr id="3">
-                <td id="30"></td>
-                <td id="31"></td>
-                <td id="32"></td>
-                <td id="33"></td>
-                <td id="34"></td>
-                <td id="35"></td>
-                <td id="36"></td>
-                <td id="37"></td>
-                <td id="38"></td></tr>
+                <!-- <div class="difficultyLevelSelectionWindow">
+                    <button></button>
+                    <button></button>`
+                    <button></button>
 
-            <tr id="4">
-                <td id="40"></td>
-                <td id="41"></td>
-                <td id="42"></td>
-                <td id="43"></td>
-                <td id="44"></td>
-                <td id="45"></td>
-                <td id="46"></td>
-                <td id="47"></td>
-                <td id="48"></td></tr>
+                </div> -->
 
-            <tr id="5">
-                <td id="50"></td>
-                <td id="51"></td>
-                <td id="52"></td>
-                <td id="53"></td>
-                <td id="54"></td>
-                <td id="55"></td>
-                <td id="56"></td>
-                <td id="57"></td>
-                <td id="58"></td></tr>
+                <!-- <div class="userAndPasswordWindow">
+                            <input class="button" type="text" value="user name"><br><br>
+                            <input class="button" type="password" value="password">
+        
+                </div> -->
+                
+                <div class="parent">
+                <!-- game board -->
+                    <div class="smallMat">
+                        <div id="div00" class="button"><a onclick="selectNumberForCell(event)" class="linkButton" id='a00'></a></div>
+                        <div id="div01" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div02" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div10" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div11" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div12" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div20" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div21" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div22" class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div03"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div04"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div05"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div13"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div14"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div15"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div23"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div24"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div25"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div06"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div07"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div08"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div16"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div17"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div18"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div26"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div27"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div28"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div30"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div31"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div32"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div40"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div41"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div42"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div50"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div51"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div52"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div33"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div34"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div35"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div43"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div44"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div45"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div53"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div54"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div55"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div36"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div37"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div38"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div46"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div47"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div48"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div56"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div57"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div58"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div60"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div61"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div62"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div70"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div71"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div72"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div80"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div81"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div82"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div63"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div64"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div65"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div73"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div74"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div75"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div83"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div84"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div85"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                    </div>
+                    <div class="smallMat">
+                        <div id="div66"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div67"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div68"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div76"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div77"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div78"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div86"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div87"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                        <div id="div88"class="button"><a onclick="selectNumberForCell(event)" class="linkButton"></a></div>
+                </div>
 
-            <tr id="6">
-                <td id="60"></td>
-                <td id="61"></td>
-                <td id="62"></td>
-                <td id="63"></td>
-                <td id="64"></td>
-                <td id="65"></td>
-                <td id="66"></td>
-                <td id="67"></td>
-                <td id="68"></td></tr>
-
-            <tr id="7">
-                <td id="70"></td>
-                <td id="71"></td>
-                <td id="72"></td>
-                <td id="73"></td>
-                <td id="74"></td>
-                <td id="75"></td>
-                <td id="76"></td>
-                <td id="77"></td>
-                <td id="78"></td></tr>
-
-            <tr id="8">
-                <td id="80"></td>
-                <td id="81"></td>
-                <td id="82"></td>
-                <td id="83"></td>
-                <td id="84"></td>
-                <td id="85"></td>
-                <td id="86"></td>
-                <td id="87"></td>
-                <td id="88"></td></tr>
-        </table>
-    </div>
 
 
 
-    <script src="script.js"></script>
+            </section>
+            <!-- ******************************************************************* -->
+            <aside>
+                aside  
+            </aside>
+            <!-- ******************************************************************* -->
+            <footer>
+                footer
+            </footer>
+            <!-- ******************************************************************* -->
+        </div>
+    <script src="testScript.js"></script>
 </body>
 </html>

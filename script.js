@@ -75,19 +75,6 @@ function hasError(row, col, num) {
     return hasErrorInRow(row,col,num)[0] || hasErrorInColumn(row,col,num)[0] || hasErrorInSmallMat(row,col,num)[0] || typeof num !== 'number';
 }
 
-//A function that builds a first row in the matrix
-function fillFirstRow() {
-    let arr=[1,2,3,4,5,6,7,8,9];
-    let newarr=[];
-    let index;
-    for (let i = 0; i < 9; i++) {
-        index=Math.floor(Math.random()*(9-i)-0)+0;
-        newarr.push(arr[index]);
-        arr.splice(index,1);
-    }
-    console.log(newarr);
-}
-
 function hasMoreOptions(arr) {  
     return arr.length>0; 
 }
