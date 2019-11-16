@@ -174,34 +174,6 @@ const reveal=(dificulty) => {
         }
     }
 }
-const fillHtml=() => {
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
-            if(board[i][j]!=0){
-                document.getElementById(`a${i}${j}`).innerHTML = board[i][j];
-            }
-        }
-    }
-}
-
-fillBoard();
-reveal(60);
-fillHtml();
-
-//*****************************************************************************************************************
-
-
-const openPopup = ({top, left}) => {
-    const popup = document.getElementById('popup2');
-    popup.style.left = left;
-    popup.style.top = top;
-    popup.style.display = "block";
-}
-
-const closePopup = () => {
-    const popup = document.getElementById('popup2');
-    popup.style.display = "none";
-}
 
 const selectNumberForCell = function (e) {
     idCellEdit = e.target.id;
@@ -216,6 +188,63 @@ const selectNumberForCell = function (e) {
 const insertNum = (num) => {
     document.getElementById(idCellEdit).innerHTML = num;
     closePopup();
+}
+ const createInMemoryBoard = () => {
+        const newGameBoard = document.createElement('div');
+        newGameBoard.classList='parent';
+        newGameBoard.id = 'board';
+        return newGameBoard;
+    }
+
+const createCell = (i, j) => {
+    const cell = document.createElement('a');
+    cell.classList='cell';
+    cell.id = `a${i}${j}`;
+
+    if (board[i][j] === 0) {
+        cell.onclick = selectNumberForCell;
+    } else {
+        cell.innerHTML = board[i][j];   
+        cell.classList = 'cell blocked';        
+    }
+    return cell;
+}
+
+const setBoard = (board) => {
+    const htmlBorad = document.getElementById('board');
+    htmlBorad.replaceWith(board);
+}
+
+const boardToHTML = () => {
+    const newGameBoard = createInMemoryBoard();
+    
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            const cell = createCell(i, j);
+            newGameBoard.appendChild(cell);
+        }
+    }  
+
+    setBoard(newGameBoard);
+}
+
+fillBoard();
+reveal(60);
+boardToHTML();
+
+//*****************************************************************************************************************
+
+
+const openPopup = ({top, left}) => {
+    const popup = document.getElementById('popup2');
+    popup.style.left = left;
+    popup.style.top = top;
+    popup.style.display = "block";
+}
+
+const closePopup = () => {
+    const popup = document.getElementById('popup2');
+    popup.style.display = "none";
 }
 
 window.onclick = closePopup;
