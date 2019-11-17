@@ -162,20 +162,38 @@ const logInUser = (userName, password) => {
 //   * A function that selects a difficulty level  *
 //   ***********************************************
 
-const selectionOfDifficultyLevel = () => {
-  fillBoard();
-  for (let row = 0; row < 9; row++) {
-    for (let col = 0; col < 9; col++) {
-      if (rollByPercent() < 26) {
-        board[row][col] = 0;
-      }
-    }
-  }
-}
+// const selectionOfDifficultyLevel = () => {
+//   fillBoard();
+//   for (let row = 0; row < 9; row++) {
+//     for (let col = 0; col < 9; col++) {
+//       if (rollByPercent() < 26) {
+//         board[row][col] = 0;
+//       }
+//     }
+//   }
+// }
 
-const reveal = (dificulty) => {
+// const reveal = (dificulty) => {
+//   let flag = 0, col, row;
+//   for (let i = 0; i < dificulty; i++) {
+//     flag = 0;
+//     while (flag == 0) {
+//       col = rollNumberForReveal();
+//       row = rollNumberForReveal();
+//       if (board[row][col] == 0) {
+//         continue;
+//       }
+//       else {
+//         flag = 1;
+//         board[row][col] = 0;
+//       }
+//     }
+//   }
+// }
+
+const chooseDificulty = (level) => {
   let flag = 0, col, row;
-  for (let i = 0; i < dificulty; i++) {
+  for (let i = 0; i < (level * 20); i++) {
     flag = 0;
     while (flag == 0) {
       col = rollNumberForReveal();
@@ -274,8 +292,14 @@ const closePopup = () => {
   popup.style.display = "none";
 }
 
+
+
+
+
+
+// reveal(50);
 window.onclick = closePopup;
 
 fillBoard();
-reveal(60);
+chooseDificulty(1) //this func get number level 1=easy 2=medium 3=hard
 boardToHTML();
