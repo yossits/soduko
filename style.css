@@ -1,9 +1,6 @@
                               /******************
                               * CSS soduko game *
                               *******************/
-
-
-/* background style matrix */
 body {
   font-family: Arial, sans-serif;
   background: url(matrix.gif) no-repeat;
@@ -94,34 +91,14 @@ section {
   
 }
 
-/* 9X9 matrix grid */
-.parent {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(9, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-  background-color: transparent;
-  justify-content: center; 
-  width: 278px;
-  position: absolute;
-  /* left: 500px;
-  top: 100px; */
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 572px;
   margin: 0 auto;
-  margin-left: 24%;
-
   }
 
-/* 3X3 matrix grid */
-.smallMat {
-  display: grid;
-  padding: 5px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 3px;
-  grid-row-gap: 3px;
-  background-color: transparent;
-}
 
 /*********************************aside**************************/
 aside {
@@ -137,15 +114,14 @@ footer {
           * game board designe with css-grid *
           ************************************/
 
-
-
-/* cells desige */
 .cell {
-  font-size: 1em;
-  padding: 20px;
+  width: 46px;
+  height: 46px;
+  line-height: 46px;
+  text-align: center;
   color: #fff;
   border: 2px solid rgba(255, 255, 255, 0.308);
-  border-radius: 40px/40px;
+  border-radius: 14px/25px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease-out;
@@ -153,10 +129,21 @@ footer {
   opacity: 0.7;
 }
 
+.cell:nth-child(3n + 3) {
+  margin-right: 30px;
+}
+
+.cell.mat-top-3 {
+  margin-top: 30px;
+}
+
 .cell.blocked {
   border: 3px solid rgba(255, 255, 255, 1);
 }
 
+.cell.invalid {
+  background-color: #FF0000;
+}
 
 .cell:hover {
   background: #06D85F;
@@ -171,34 +158,23 @@ footer {
 .number-selector {
   width: 150px;
   height: 140px;
-  position: absolute;
+  position: fixed;
   background: rgba(0, 0, 0, 0);
   transition: opacity 500ms;
   display: none;
   z-index: 1;
 }
+
 .number-selector:target {
   opacity: 1;
 }
 
-
-.popup {/**/
+.popup {
   padding: 10px;
   background: transparent;
   width: 150px;
   position: relative;
   transition: all 5s ease-in-out;
-}
-
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
 }
 
 .choosingButton {

@@ -1,139 +1,281 @@
-//***********************************************/
-//* Welcome to Andrei and Yossi's Sudoku game   */
-//***********************************************/
+//    ***********************************************
+//    * WELCOME TO ANDREI AND YOSSI'S SODOKU GAME   *
+//    ***********************************************
 
-//A function prints an index of a matrix[row][col]
+let idCellEdit;
+let steps = 0;
+let board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0, 0, 0, 0, 0]];
 
-var board =[[0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0]];
 
-function Auto_fill_table(){
-    var count=0;
-    for (let y = 0; y < 9; y++) {
-        for(let x=0 ;x<9; x++){
-            let index=(''+y+x);
-            document.getElementById(index).innerHTML=index;
-            count++;
+
+//   *********************************************************
+//   * Functions for finding duplicate numbers in the board  *
+//   *********************************************************
+
+const hasErrorInRow = (row, col, num) => {
+  for (let i = 0; i < 9; i++) {
+    if (board[row][i] === num && col !== i) {
+      return [true, i];
+    }
+  }
+  return [false];
+}
+
+const hasErrorInColumn = (row, col, num) => {
+  for (let i = 0; i < 9; i++) {
+    if (board[i][col] === num && row !== i) {
+      return [true, i];
+    }
+  }
+  return [false];
+}
+
+const hasErrorInSmallMat = (row, col, num) => {
+  const firstCubeIndex = {
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 3,
+    4: 3,
+    5: 3,
+    6: 6,
+    7: 6,
+    8: 6,
+  }
+  let i = firstCubeIndex[row];
+  let j = firstCubeIndex[col];
+  let maxj = j + 3;
+  let maxi = i + 3;
+
+  for (i; i < maxi; i++) {
+    for (j; j < maxj; j++) {
+      if (board[i][j] === num) {
+        return [true, i, j];
+      }
+    }
+    j = firstCubeIndex[col];
+  }
+  return [false];
+}
+
+
+const hasError = (row, col, num) => {
+  return hasErrorInRow(row, col, num)[0] || hasErrorInColumn(row, col, num)[0] || hasErrorInSmallMat(row, col, num)[0];
+}
+
+const getErrorCell = (row, col, num) => {
+  const errorInRow = hasErrorInRow(row, col, num)
+  if (errorInRow[0]) {
+    return {
+      row,
+      column: errorInRow[1]
+    };
+  }
+
+  const errorInColumn = hasErrorInColumn(row, col, num)
+  if (errorInColumn[0]) {
+    return {
+      row: errorInColumn[1],
+      column: col
+    };
+  }
+
+  const errorInSmallMat= hasErrorInSmallMat(row, col, num)
+  if (errorInSmallMat[0]) {
+    return {
+      row: errorInSmallMat[1],
+      column: errorInSmallMat[2]
+    };
+  }
+
+  return null;
+}
+
+//************************************************************
+
+const rollNewNumber = () => {
+  steps++;
+  return Math.floor(Math.random() * 9) + 1;
+}
+
+const rollByPercent = () => {
+
+  return Math.floor(Math.random() * 100) + 1;
+}
+
+const rollNumberForReveal = () => {
+
+  return Math.floor(Math.random() * 9);
+}
+
+//   ***********************************************
+//   * A function that builds an entire game board *
+//   ***********************************************
+
+const fillBoard = () => {
+  let count = 0;
+
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      num = rollNewNumber();
+
+      while (hasError(row, col, num)) {
+        while (count < 50 && hasError(row, col, num)) {
+          num = rollNewNumber();
+          count++;
         }
-    }
-}
-
-function hasErrorInRow(row,col,num){
-    for(let i=0;i<9;i++){
-        if(board[row][i] === num && col !== i){
-            return [true, i];
+        if (count == 50) {
+          col = 0;
+          board[row] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+          row--;
+          board[row] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
         }
+        count = 0;
+      }
+      board[row][col] = num;
     }
-    return [false];
+  }
+  console.log(board);
+  return board;
 }
 
-function hasErrorInColumn(row,col,num){
-    for(let i=0;i<9;i++){
-        if(board[i][col] === num && row !== i){
-            return [true,i];
-        }
+//************************************************************
+
+const logInUser = (userName, password) => {
+  const subscribers = [{ userName: 'abcd', password: 1234 },
+  { userName: 'yossi', password: 1234 },
+  { userName: 'andrei', password: 1234 }]
+
+  let inputUserName =
+    let
+}
+
+//   ***********************************************
+//   * A function that selects a difficulty level  *
+//   ***********************************************
+
+const selectionOfDifficultyLevel = () => {
+  fillBoard();
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      if (rollByPercent() < 26) {
+        board[row][col] = 0;
+      }
     }
-    return [false];
+  }
 }
 
-function hasErrorInSmallMat(row,col,num){
-    const firstCubeIndex = {
-        0: 0,
-        1: 0,
-        2: 0,
-        3: 3,
-        4: 3,
-        5: 3,
-        6: 6,
-        7: 6,
-        8: 6,
+const reveal = (dificulty) => {
+  let flag = 0, col, row;
+  for (let i = 0; i < dificulty; i++) {
+    flag = 0;
+    while (flag == 0) {
+      col = rollNumberForReveal();
+      row = rollNumberForReveal();
+      if (board[row][col] == 0) {
+        continue;
+      }
+      else {
+        flag = 1;
+        board[row][col] = 0;
+      }
     }
-    let i = firstCubeIndex[row];
-    let j = firstCubeIndex[col];
-    let maxj=j+3;
-    let maxi=i+3;
+  }
+}
 
-    for (i; i<maxi; i++) {
-        for (j; j<maxj; j++) {
-            if (board[i][j] === num) {
-                if (!(row === i && col === j)) {
-                    return [true, i, j];
-                }
-            }
-        }
+const selectNumberForCell = function (e) {
+  idCellEdit = e.target.id;
+  e.stopPropagation();
+
+  const left = (e.clientX - 70) + 'px',
+    top = (e.clientY - 70) + 'px';
+
+  openPopup({ left, top });
+}
+
+const insertNum = (num) => {
+  const editedCell = document.getElementById(idCellEdit);
+  const row = Number.parseInt(idCellEdit[0], 10);
+  const column = Number.parseInt(idCellEdit[1], 10);
+  
+  if (hasError(row, column, num)) {
+    editedCell.classList += ' invalid';
+  } else {
+    editedCell.classList = editedCell.classList.value.split('invalid').join('')
+  }
+
+  board[row][column] = num;
+  editedCell.innerHTML = num;
+  closePopup();
+}
+
+const createInMemoryBoard = () => {
+  const newGameBoard = document.createElement('div');
+  newGameBoard.classList = 'board';
+  newGameBoard.id = 'board';
+  return newGameBoard;
+}
+
+const createCell = (row, column) => {
+  const cell = document.createElement('a');
+  cell.classList = 'cell';
+  cell.id = `${row}${column}`;
+
+  if (board[row][column] === 0) {
+    cell.onclick = selectNumberForCell;
+  } else {
+    cell.innerHTML = board[row][column];
+    cell.classList = 'cell blocked';
+  }
+
+  if (row === 3 || row === 6) {
+    cell.classList += ' mat-top-3'
+  }
+  return cell;
+}
+
+const setBoard = (board) => {
+  const htmlBorad = document.getElementById('board');
+  htmlBorad.replaceWith(board);
+}
+
+const boardToHTML = () => {
+  const newGameBoard = createInMemoryBoard();
+
+  for (let row = 0; row < 9; row++) {
+    for (let column = 0; column < 9; column++) {
+      const cell = createCell(row, column);
+      newGameBoard.appendChild(cell);
     }
-    return [false];
+  }
+
+  setBoard(newGameBoard);
 }
 
-function hasError(row, col, num) {
-    return hasErrorInRow(row,col,num)[0] || hasErrorInColumn(row,col,num)[0] || hasErrorInSmallMat(row,col,num)[0] || typeof num !== 'number';
+//**************************************************
+
+const openPopup = ({ top, left }) => {
+  const popup = document.getElementById('popup2');
+  popup.style.left = left;
+  popup.style.top = top;
+  popup.style.display = "block";
 }
 
-function hasMoreOptions(arr) {  
-    return arr.length>0; 
+const closePopup = () => {
+  const popup = document.getElementById('popup2');
+  popup.style.display = "none";
 }
 
-function remomveNotWorkingOption(notWorkingOption, remainOptions, notWorkingNumber, notWorkingNumberIndex) {  
-    notWorkingOption.push(notWorkingNumber);
-    remainOptions.splice(notWorkingNumberIndex,1);
-}
+window.onclick = closePopup;
 
-function rollNewIndex(arr) {
-    return Math.floor(Math.random()*arr.length);
-}
-
-function triedAllOption(arr) {
-    return arr.length==0
-}
-
-function isFirstCell(col) {
-    return col === 0;
-}
-debugger;
-function fillboard() {
-    let index;
-    let remainOptions=[1,2,3,4,5,6,7,8,9];
-    let notWorkingOption=[];
-
-    for (let row = 0; row < 9; row++) {
-        for (let col = 0; col < 9; col++) {
-            index=rollNewIndex(remainOptions);
-           
-            while (hasError(row, col, remainOptions[index])) {
-                if (hasMoreOptions(remainOptions)){
-                    remomveNotWorkingOption(notWorkingOption, remainOptions, remainOptions[index], index);
-                }
-                if (triedAllOption(remainOptions) && !isFirstCell(col)){
-                    remainOptions=notWorkingOption;
-                    notWorkingOption=[];
-                    col--;
-                    // notWorkingOption.push(board[row][col]);
-                    board[row][col]=0;
-                }
-                if (triedAllOption(remainOptions) && isFirstCell(col)){
-                    remainOptions=[1,2,3,4,5,6,7,8,9];
-                    notWorkingOption=[];
-                    row--;
-                    col=8;
-                }
-                index=rollNewIndex(remainOptions);
-            }
-            if (remainOptions[index] === undefined) {
-            }
-            board[row][col]=remainOptions[index];
-            remainOptions.splice(index,1);
-        }
-        remainOptions=[1,2,3,4,5,6,7,8,9];
-        notWorkingOption=[];
-    }
-    console.log(board);
-}
-fillboard();
-
+fillBoard();
+reveal(60);
+boardToHTML();
