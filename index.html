@@ -13,16 +13,21 @@
         <!-- ******************************************************************* -->
         <header style=>
             <div style=>
-                <a class="button">SIGN IN</a>
+                <a class="button" style="display: none;">SIGN IN</a>
             </div>
 
-            <div style="bottom: 18px; position:relative; display: none;">
+            <div style="bottom: 18px; position:relative; display: none;" id="chooseDifficulty">
                 <a class="button">choose difficulty</a>
             </div>
 
             <div style="bottom: 63px; position:relative; display: none;">
                 <p class="welcome">welcome</p>
             </div>
+            <div id="gameBar">
+                <a class="welcome" style="display: inline;" onclick="again()">AGAIN</a>
+                <a  class="welcome" style="display: inline;" onclick="finish()">FINISH</a>
+            </div>
+           
         </header>
         <!-- ******************************************************************* -->
         <nav>
@@ -56,7 +61,7 @@
 
             </div>
 
-            <div class="userAndPasswordWindow">
+            <div class="userAndPasswordWindow" style="display: none;">
                         <input class="button" type="text" value="user name"><br><br>
                         <input class="button" type="password" value="password">
     

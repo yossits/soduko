@@ -143,7 +143,7 @@ const fillBoard = () => {
       board[row][col] = num;
     }
   }
-  console.log(board);
+  //console.log(board);
   return board;
 }
 
@@ -303,3 +303,26 @@ window.onclick = closePopup;
 fillBoard();
 chooseDificulty(1) //this func get number level 1=easy 2=medium 3=hard
 boardToHTML();
+
+const again = () => {
+  gameBar.style.display ="none";
+  setBoard('');
+  chooseDificulty.style.display = "block";
+}
+
+const finish = () => {
+  let flag=0;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if(document.getElementById(`${i}${j}`).classList.contains("invalid") || document.getElementById(`${i}${j}`).value==null){
+        flag=1;
+      }
+    }    
+  }
+  if(flag==0){
+    alert('won');
+  }
+  else{
+    alert('lose');
+  }
+}
