@@ -301,7 +301,7 @@ const closePopup = () => {
 window.onclick = closePopup;
 
 fillBoard();
-chooseDificulty(1) //this func get number level 1=easy 2=medium 3=hard
+chooseDificulty(0.1) //this func get number level 1=easy 2=medium 3=hard
 boardToHTML();
 
 const again = () => {
@@ -314,15 +314,26 @@ const finish = () => {
   let flag=0;
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      if(document.getElementById(`${i}${j}`).classList.contains("invalid") || document.getElementById(`${i}${j}`).value==null){
+      if(document.getElementById(`${i}${j}`).classList.contains("invalid") || document.getElementById(`${i}${j}`).innerHTML==''){
         flag=1;
       }
     }    
   }
   if(flag==0){
-    alert('won');
+    document.getElementById('win').style.display="inline";
   }
   else{
-    alert('lose');
+    document.getElementById('lose').style.display="inline";
   }
 }
+
+const closeWin = () => {
+  document.getElementById('win').style.display="none";
+}
+
+const closeLose = () => {
+  document.getElementById('lose').style.display="none";
+}
+
+
+

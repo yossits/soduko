@@ -27,6 +27,11 @@
                 <a class="welcome" style="display: inline;" onclick="again()">AGAIN</a>
                 <a  class="welcome" style="display: inline;" onclick="finish()">FINISH</a>
             </div>
+            <div id="loseOrWin">
+                <a class="welcome"  style="display: none;" onclick="closeWin()" id="win">WIN!!! click to close</a>
+                <a  class="welcome"  style="display: none;" onclick="closeLose()" id="lose">LOSE!! click to close</a>
+            </div>
+
            
         </header>
         <!-- ******************************************************************* -->
@@ -54,6 +59,7 @@
                 </div>
             </div>
 
+
             <div class="difficultyLevelSelectionWindow" style="display: none;">
                 <button>1</button>
                 <button>2</button>
@@ -69,6 +75,8 @@
             
             <div class="board" id="board"></div>
 
+        
+
         </section>
         <!-- ******************************************************************* -->
         <aside>
@@ -80,6 +88,9 @@
         </footer>
         <!-- ******************************************************************* -->
     </div>
+
+    
+
     <script src="script.js"></script>
 </body>
 </html>

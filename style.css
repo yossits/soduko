@@ -123,6 +123,7 @@ footer {
   border: 2px solid rgba(255, 255, 255, 0.308);
   border-radius: 14px/25px;
   text-decoration: none;
+  font-size: larger;
   cursor: pointer;
   transition: all 0.3s ease-out;
   background-color: #06D85F;
@@ -138,7 +139,7 @@ footer {
 }
 
 .cell.blocked {
-  border: 3px solid rgba(255, 255, 255, 1);
+  border: 3px solid rgb(255, 255, 255);
 }
 
 .cell.invalid {
@@ -196,6 +197,14 @@ footer {
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
+
+#lose {
+  background-color: #FF0000;
+  width: 250px;
+}
+#win {
+  background-color: #FF0000;
 }
 
 
