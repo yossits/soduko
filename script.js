@@ -5,14 +5,14 @@
 let idCellEdit;
 let steps = 0;
 let board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 0, 0, 0, 0, 0, 0]];
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0]];
 
 
 
@@ -121,6 +121,7 @@ const rollNumberForReveal = () => {
 //   ***********************************************
 
 const fillBoard = () => {
+  
   let count = 0;
 
   for (let row = 0; row < 9; row++) {
@@ -149,49 +150,31 @@ const fillBoard = () => {
 
 //************************************************************
 
-const logInUser = (userName, password) => {
-  const subscribers = [{ userName: 'abcd', password: 1234 },
-  { userName: 'yossi', password: 1234 },
-  { userName: 'andrei', password: 1234 }]
-
-  let inputUserName =
-    let
+const logInUser = (userInput, passInput) => {
+  const userList = [{ userName: 'abcd', password: 1234 }]
+  if (userInput == userList[0].userName && passInput == userList[0].password){
+    return true;
+  }
+  else{return false;}
 }
 
 //   ***********************************************
 //   * A function that selects a difficulty level  *
 //   ***********************************************
 
-// const selectionOfDifficultyLevel = () => {
-//   fillBoard();
-//   for (let row = 0; row < 9; row++) {
-//     for (let col = 0; col < 9; col++) {
-//       if (rollByPercent() < 26) {
-//         board[row][col] = 0;
-//       }
-//     }
-//   }
-// }
 
-// const reveal = (dificulty) => {
-//   let flag = 0, col, row;
-//   for (let i = 0; i < dificulty; i++) {
-//     flag = 0;
-//     while (flag == 0) {
-//       col = rollNumberForReveal();
-//       row = rollNumberForReveal();
-//       if (board[row][col] == 0) {
-//         continue;
-//       }
-//       else {
-//         flag = 1;
-//         board[row][col] = 0;
-//       }
-//     }
-//   }
-// }
 
 const chooseDificulty = (level) => {
+  board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0, 0]];
+  fillBoard();
   let flag = 0, col, row;
   for (let i = 0; i < (level * 20); i++) {
     flag = 0;
@@ -207,7 +190,14 @@ const chooseDificulty = (level) => {
       }
     }
   }
+  difficultyLevelSelectionWindow.style.display = "none";
+  welcomeUser.style.display = "none";
+  //debugger;
+  boardToHTML();
+  gameBar.style.display = "block";
+
 }
+
 
 const selectNumberForCell = function (e) {
   idCellEdit = e.target.id;
@@ -265,6 +255,10 @@ const setBoard = (board) => {
   htmlBorad.replaceWith(board);
 }
 
+const deleteBoard = () => {
+  setBoard(createInMemoryBoard());
+}
+
 const boardToHTML = () => {
   const newGameBoard = createInMemoryBoard();
 
@@ -292,22 +286,35 @@ const closePopup = () => {
   popup.style.display = "none";
 }
 
+const signIn = () => {
+  userAndPasswordWindow.style.display = "block";
+}
 
 
+const enterForDifficultyWindow = () => {
+  let userInput = document.getElementById('user').value;
+  let passInput = document.getElementById('pass').value;
+  if (logInUser(userInput, passInput)){
+    userAndPasswordWindow.style.display = "none";
+    signin.style.display = "none";
+    difficultyLevelSelectionWindow.style.display = "list-item";
+    // chooseLevel.style.display = "block";
+    welcome.style.display = "block";
+    document.getElementById('welcomeUser').innerHTML = "welcome" +" "+ userInput;
+  }
+  else{
+    alert("ERROR: wrong user name or password")
+  }
+}
 
 
-
-// reveal(50);
 window.onclick = closePopup;
-
-fillBoard();
-chooseDificulty(0.1) //this func get number level 1=easy 2=medium 3=hard
-boardToHTML();
 
 const again = () => {
   gameBar.style.display ="none";
-  setBoard('');
-  chooseDificulty.style.display = "block";
+  deleteBoard();
+  difficultyLevelSelectionWindow.style.display = "block";
+  welcomeUser.style.display = "block";
 }
 
 const finish = () => {
@@ -333,7 +340,16 @@ const closeWin = () => {
 
 const closeLose = () => {
   document.getElementById('lose').style.display="none";
+
+
 }
+
+
+fillBoard();
+//chooseDificulty(1) //this func get number level 1=easy 2=medium 3=hard
+// boardToHTML();
+
+
 
 
 
